@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="recorddbapi">RecordDB.API</h1>
+<p><img src="https://img.shields.io/badge/.NET 10-512BD4?logo=dotnet&amp;logoColor=white&amp;style=for-the-badge" alt=".NET 10">
+<img src="https://img.shields.io/badge/C# 13-239120?logo=csharp&amp;logoColor=white&amp;style=for-the-badge" alt="C#">
+<img src="https://img.shields.io/badge/ASP.NET Core-512BD4?logo=dotnet&amp;logoColor=white&amp;style=for-the-badge" alt="ASP.NET Core">
+<img src="https://img.shields.io/badge/Dapper-Micro--ORM-007ACC?style=for-the-badge" alt="Dapper">
+<img src="https://img.shields.io/badge/Microsoft SQL Server-CC292B?logo=microsoftsqlserver&amp;logoColor=white&amp;style=for-the-badge" alt="Microsoft SQL Server">
+<img src="https://img.shields.io/badge/Swagger / OpenAPI-85EA2D?logo=swagger&amp;logoColor=black&amp;style=for-the-badge" alt="Swagger"></p>
+<p>A standalone, high-performance <strong>.NET 10 Controller-based Web API</strong> for the <strong>RecordDB</strong> music catalog system.</p>
+<p>RecordDB.API exposes RESTful endpoints for managing artists, records (albums), discs, and tracks. It is backed by a self-contained data access layer built with <strong>Dapper</strong> and <strong>Microsoft.Data.SqlClient</strong>, executing optimized SQL Server stored procedures and table-valued parameters (TVPs).</p>
+<hr>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>.NET 10 &amp; C# 13</strong>: Modern runtime features including primary constructors and collection expressions.</li>
+<li><strong>Self-Contained Data Layer</strong>: Completely independent of external DAL class libraries.</li>
+<li><strong>Dapper &amp; Stored Procedures</strong>: Direct, lightweight database execution with zero EF Core overhead.</li>
+<li><strong>Table-Valued Parameters (TVP)</strong>: Bulk track insertion via SQL Server's <code>dbo.TrackTableType</code>.</li>
+<li><strong>DTOs &amp; Data Integrity</strong>: Dedicated request/response DTOs prevent over-posting and eliminate circular references.</li>
+<li><strong>Interactive OpenAPI / Swagger UI</strong>: Full endpoint documentation with XML doc summaries served directly from the application root (<code>/</code>).</li>
+</ul>
+<hr>
+<h2 id="project-structure">Project Structure</h2>
+<pre class="hljs"><code><div>RecordDB.API/
+├── RecordDB.API.slnx                  # Solution file (.NET 10 format)
+└── RecordDB.API/
+    ├── Program.cs                     # DI configuration, pipeline, &amp; Swagger setup
+    ├── appsettings.json               # Database connection strings &amp; logging config
+    ├── Controllers/                   # ASP.NET Core API controllers
+    │   ├── ArtistController.cs        # Artist CRUD, bios, and search endpoints
+    │   ├── RecordController.cs        # Record CRUD, reviews, totals, and counts
+    │   ├── DiscController.cs          # Disc CRUD and length patching
+    │   └── TrackController.cs         # Track CRUD, search, and TVP bulk inserts
+    ├── Repositories/                  # Data access abstractions &amp; implementations
+    │   ├── IArtistRepository.cs / ArtistRepository.cs
+    │   ├── IRecordRepository.cs / RecordRepository.cs
+    │   ├── IDiscRepository.cs   / DiscRepository.cs
+    │   └── ITrackRepository.cs  / TrackRepository.cs
+    ├── Data/                          # Core database execution engine
+    │   ├── IDataAccess.cs             # Generic interface for queries, scalars, &amp; commands
+    │   └── DataAccess.cs              # Dapper SQL connection and command execution
+    ├── Models/                        # Domain entities representing database tables
+    │   ├── Artist.cs
+    │   ├── Record.cs
+    │   ├── Disc.cs
+    │   ├── Track.cs
+    │   └── Total.cs
+    ├── DTOs/                          # Request bodies &amp; projection view models
+    │   ├── ArtistDto.cs / CreateArtistDto.cs / UpdateArtistDto.cs
+    │   ├── CreateRecordDto.cs / UpdateRecordDto.cs
+    │   ├── CreateDiscDto.cs / UpdateDiscDto.cs / UpdateDiscLengthDto.cs
+    │   ├── CreateTrackDto.cs / UpdateTrackDto.cs
+    │   ├── ArtistRecordDto.cs
+    │   ├── ArtistRecordDiscDto.cs
+    │   ├── ArtistRecordDiscTrackDto.cs
+    │   ├── RecordReviewDto.cs
+    │   └── MissingReviewDto.cs
+    └── Extensions/
+        └── DateTimeExtensions.cs      # Date formatting helper utilities
+</div></code></pre>
+<hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li><a href="https://dotnet.microsoft.com/">.NET 10 SDK</a></li>
+<li>SQL Server instance with the <code>RecordDB</code> database schema and stored procedures installed.</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<p>Edit <code>RecordDB.API/appsettings.json</code> with your database credentials:</p>
+<pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;ConnectionStrings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;RecordDb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Server=YOUR_SERVER;Initial Catalog=RecordDB;Persist Security Info=False;User ID=YOUR_USER;Password=YOUR_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+<blockquote>
+<p><strong>Note on <code>TrustServerCertificate=True</code></strong>: When connecting to local development SQL Server instances with self-signed certificates, <code>TrustServerCertificate=True</code> is required by <code>Microsoft.Data.SqlClient</code> to bypass certificate chain validation.</p>
+</blockquote>
+<h3 id="running-the-api">Running the API</h3>
+<p>From the terminal:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Restore dependencies and build</span>
+dotnet build D:\Projects\RecordDB.API\RecordDB.API.slnx
+
+<span class="hljs-comment"># Run the API project</span>
+dotnet run <span class="hljs-literal">--project</span> D:\Projects\RecordDB.API\RecordDB.API
+</div></code></pre>
+<p>Once running, launch your browser and navigate to:</p>
+<ul>
+<li><strong>Swagger UI</strong>: <code>https://localhost:&lt;port&gt;/</code> (served at the root path)</li>
+<li><strong>OpenAPI Specification</strong>: <code>https://localhost:&lt;port&gt;/swagger/v1/swagger.json</code></li>
+</ul>
+<hr>
+<h2 id="api-endpoints-reference">API Endpoints Reference</h2>
+<h3 id="1-artist-apiartist">1. Artist (<code>/api/artist</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Route</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist</code></td>
+<td>Retrieve all artists</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/{id}</code></td>
+<td>Retrieve a single artist by ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/search/{name}</code></td>
+<td>Search artists by partial name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/no-biography</code></td>
+<td>Retrieve all artists with missing biography</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/no-biography/{name}</code></td>
+<td>Retrieve an artist with no biography by name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/by-record/{recordId}</code></td>
+<td>Retrieve the artist for a specific record</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/biography/{recordId}</code></td>
+<td>Retrieve the biography text for a record's artist</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/artist/artist-id?firstName=&amp;lastName=</code></td>
+<td>Look up an <code>ArtistId</code> by first and last name</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/artist</code></td>
+<td>Create a new artist (<code>CreateArtistDto</code>)</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/artist/{id}</code></td>
+<td>Update an existing artist (<code>UpdateArtistDto</code>)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/artist/{id}</code></td>
+<td>Delete an artist by ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2-record-apirecord">2. Record (<code>/api/record</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Route</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record</code></td>
+<td>Retrieve all records with artist details</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/{id}</code></td>
+<td>Retrieve a single record with artist details by ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/show/{show}</code></td>
+<td>Filter records by show flag (e.g. <code>Y</code> / <code>N</code>)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/by-artist/{name}</code></td>
+<td>Retrieve records by artist name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/by-artist-id/{artistId}</code></td>
+<td>Retrieve records for an artist ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/by-year/{year}</code></td>
+<td>Retrieve records by recording year</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/reviews</code></td>
+<td>Retrieve all records having reviews</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/no-reviews</code></td>
+<td>Retrieve all records missing reviews</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/no-tracks</code></td>
+<td>Retrieve all records that have no tracks</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/no-tracks/{name}</code></td>
+<td>Retrieve records with no tracks for a specific artist</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/tracks/search/{name}</code></td>
+<td>Search tracks with record/disc context</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/totals</code></td>
+<td>Retrieve per-artist disc count and cost totals</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/disc-count/{show}</code></td>
+<td>Count total discs by show flag</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/count/artist/{artistId}</code></td>
+<td>Count total records for an artist</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/record/count/year/{year}</code></td>
+<td>Count total records for a recording year</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/record</code></td>
+<td>Create a new record (<code>CreateRecordDto</code>)</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/record/{id}</code></td>
+<td>Update an existing record (<code>UpdateRecordDto</code>)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/record/{id}</code></td>
+<td>Delete a record by ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3-disc-apidisc">3. Disc (<code>/api/disc</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Route</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/disc</code></td>
+<td>Retrieve all discs with artist and record context</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/disc/{id}</code></td>
+<td>Retrieve a single disc by ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/disc/search/{name}</code></td>
+<td>Search discs by record name</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/disc</code></td>
+<td>Create a new disc (<code>CreateDiscDto</code>)</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/disc/{id}</code></td>
+<td>Update an existing disc (<code>UpdateDiscDto</code>)</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/api/disc/{id}/length</code></td>
+<td>Update only the disc's length (<code>UpdateDiscLengthDto</code>)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/disc/{id}</code></td>
+<td>Delete a disc by ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-track-apitrack">4. Track (<code>/api/track</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>HTTP Method</th>
+<th>Route</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track</code></td>
+<td>Retrieve all tracks with full context</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/{id}</code></td>
+<td>Retrieve a single track by ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/search/{name}</code></td>
+<td>Search tracks by partial name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/by-artist/{name}</code></td>
+<td>Retrieve tracks for records by artist name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/by-record/{name}</code></td>
+<td>Retrieve tracks by record name</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/count/record/{recordId}</code></td>
+<td>Get total track count for a record ID</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/track/check/disc/{discId}</code></td>
+<td>Check existing track count for a disc</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/track</code></td>
+<td>Create a single track (<code>CreateTrackDto</code>)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/track/bulk</code></td>
+<td>Bulk-insert multiple tracks using SQL TVP (<code>IEnumerable&lt;CreateTrackDto&gt;</code>)</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/track/{id}</code></td>
+<td>Update an existing track (<code>UpdateTrackDto</code>)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/track/{id}</code></td>
+<td>Delete a track by ID</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="technical-highlights">Technical Highlights</h2>
+<h3 id="table-valued-parameter-tvp-bulk-insertion">Table-Valued Parameter (TVP) Bulk Insertion</h3>
+<p>For high-throughput track creation, <code>TrackRepository</code> uses SQL Server's Table-Valued Parameter <code>dbo.TrackTableType</code> mapped via a populated ADO.NET <code>DataTable</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">var</span> trackTable = <span class="hljs-keyword">new</span> DataTable();
+trackTable.Columns.Add(<span class="hljs-string">&quot;DiscId&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));
+trackTable.Columns.Add(<span class="hljs-string">&quot;TrackNo&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));
+trackTable.Columns.Add(<span class="hljs-string">&quot;Name&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">string</span>));
+trackTable.Columns.Add(<span class="hljs-string">&quot;TrackLength&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));
+trackTable.Columns.Add(<span class="hljs-string">&quot;Extended&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">string</span>));
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> track <span class="hljs-keyword">in</span> tracks)
+{
+    trackTable.Rows.Add(
+        track.DiscId,
+        track.TrackNo,
+        track.Name ?? <span class="hljs-built_in">string</span>.Empty,
+        (<span class="hljs-built_in">object</span>?)track.TrackLength ?? DBNull.Value,
+        (<span class="hljs-built_in">object</span>?)track.Extended ?? DBNull.Value
+    );
+}
+
+<span class="hljs-keyword">var</span> parameters = <span class="hljs-keyword">new</span>
+{
+    Tracks = trackTable.AsTableValuedParameter(<span class="hljs-string">&quot;dbo.TrackTableType&quot;</span>)
+};
+
+<span class="hljs-keyword">await</span> _db.SaveData(<span class="hljs-string">&quot;up_InsertTracks&quot;</span>, parameters);
+</div></code></pre>
+<h3 id="clean-dto-separation">Clean DTO Separation</h3>
+<p>All controller endpoints receive and return dedicated DTOs rather than raw database entities with circular object graphs. This ensures clean JSON serialization, consistent contract versioning, and defense against mass assignment vulnerabilities.</p>
+
+</body>
+</html>
