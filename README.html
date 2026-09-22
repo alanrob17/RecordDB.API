@@ -369,9 +369,11 @@ code {
 <p><img src="https://img.shields.io/badge/.NET 10-512BD4?logo=dotnet&amp;logoColor=white&amp;style=for-the-badge" alt=".NET 10">
 <img src="https://img.shields.io/badge/C# 13-239120?logo=csharp&amp;logoColor=white&amp;style=for-the-badge" alt="C#">
 <img src="https://img.shields.io/badge/ASP.NET Core-512BD4?logo=dotnet&amp;logoColor=white&amp;style=for-the-badge" alt="ASP.NET Core">
+<img src="https://img.shields.io/badge/Scalar-API Reference-E9573F?style=for-the-badge" alt="Scalar">
+<img src="https://img.shields.io/badge/ReDoc-API Docs-263238?logo=openapiinitiative&amp;logoColor=white&amp;style=for-the-badge" alt="ReDoc">
+<img src="https://img.shields.io/badge/Swagger / OpenAPI-85EA2D?logo=swagger&amp;logoColor=black&amp;style=for-the-badge" alt="Swagger">
 <img src="https://img.shields.io/badge/Dapper-Micro--ORM-007ACC?style=for-the-badge" alt="Dapper">
-<img src="https://img.shields.io/badge/Microsoft SQL Server-CC292B?logo=microsoftsqlserver&amp;logoColor=white&amp;style=for-the-badge" alt="Microsoft SQL Server">
-<img src="https://img.shields.io/badge/Swagger / OpenAPI-85EA2D?logo=swagger&amp;logoColor=black&amp;style=for-the-badge" alt="Swagger"></p>
+<img src="https://img.shields.io/badge/Microsoft SQL Server-CC292B?logo=microsoftsqlserver&amp;logoColor=white&amp;style=for-the-badge" alt="Microsoft SQL Server"></p>
 <p>A standalone, high-performance <strong>.NET 10 Controller-based Web API</strong> for the <strong>RecordDB</strong> music catalog system.</p>
 <p>RecordDB.API exposes RESTful endpoints for managing artists, records (albums), discs, and tracks. It is backed by a self-contained data access layer built with <strong>Dapper</strong> and <strong>Microsoft.Data.SqlClient</strong>, executing optimized SQL Server stored procedures and table-valued parameters (TVPs).</p>
 <hr>
@@ -382,7 +384,13 @@ code {
 <li><strong>Dapper &amp; Stored Procedures</strong>: Direct, lightweight database execution with zero EF Core overhead.</li>
 <li><strong>Table-Valued Parameters (TVP)</strong>: Bulk track insertion via SQL Server's <code>dbo.TrackTableType</code>.</li>
 <li><strong>DTOs &amp; Data Integrity</strong>: Dedicated request/response DTOs prevent over-posting and eliminate circular references.</li>
-<li><strong>Interactive OpenAPI / Swagger UI</strong>: Full endpoint documentation with XML doc summaries served directly from the application root (<code>/</code>).</li>
+<li><strong>Triple API Documentation (Scalar, ReDoc, &amp; Swagger UI)</strong>: Explore and test your endpoints through three interactive documentation UIs:
+<ul>
+<li><strong>Scalar</strong> (<code>/scalar/v1</code>, with <code>/</code> root redirection)</li>
+<li><strong>ReDoc</strong> (<code>/redoc</code>)</li>
+<li><strong>Swagger UI</strong> (<code>/swagger</code>)</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="project-structure">Project Structure</h2>
@@ -451,8 +459,10 @@ dotnet run <span class="hljs-literal">--project</span> D:\Projects\RecordDB.API\
 </div></code></pre>
 <p>Once running, launch your browser and navigate to:</p>
 <ul>
-<li><strong>Swagger UI</strong>: <code>https://localhost:&lt;port&gt;/</code> (served at the root path)</li>
-<li><strong>OpenAPI Specification</strong>: <code>https://localhost:&lt;port&gt;/swagger/v1/swagger.json</code></li>
+<li><strong>Scalar API Reference</strong>: <code>https://localhost:&lt;port&gt;/scalar/v1</code> (or root <code>https://localhost:&lt;port&gt;/</code>)</li>
+<li><strong>ReDoc</strong>: <code>https://localhost:&lt;port&gt;/redoc</code></li>
+<li><strong>Swagger UI</strong>: <code>https://localhost:&lt;port&gt;/swagger</code></li>
+<li><strong>OpenAPI Specification</strong>: <code>https://localhost:&lt;port&gt;/openapi/v1.json</code></li>
 </ul>
 <hr>
 <h2 id="api-endpoints-reference">API Endpoints Reference</h2>
@@ -773,6 +783,17 @@ trackTable.Columns.Add(<span class="hljs-string">&quot;Extended&quot;</span>, <s
 </div></code></pre>
 <h3 id="clean-dto-separation">Clean DTO Separation</h3>
 <p>All controller endpoints receive and return dedicated DTOs rather than raw database entities with circular object graphs. This ensures clean JSON serialization, consistent contract versioning, and defense against mass assignment vulnerabilities.</p>
+<h3 id="accessing-the-api-uis">Accessing the API UIs</h3>
+<p>When you run:</p>
+<pre class="hljs"><code><div>  dotnet run --project D:\Projects\RecordDB.API\RecordDB.API:
+</div></code></pre>
+<p>Once started, all three documentation interfaces are ready:</p>
+<ul>
+<li>ReDoc: https://localhost:<port>/redoc</li>
+<li>Swagger UI: https://localhost:<port>/swagger</li>
+<li>Scalar: https://localhost:<port>/scalar/v1 (or root https://localhost:<port>/)</li>
+<li>OpenAPI JSON Spec: https://localhost:<port>/openapi/v1.json</li>
+</ul>
 
 </body>
 </html>

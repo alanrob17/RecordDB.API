@@ -1,5 +1,6 @@
 using RecordDB.API.Data;
 using RecordDB.API.Repositories;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,12 +45,34 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "openapi/{documentName}.json";
+    });
+
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "RecordDB API v1");
-        options.RoutePrefix = string.Empty; // Serve Swagger UI at app root
+        options.SwaggerEndpoint("/openapi/v1.json", "RecordDB API v1");
+        options.RoutePrefix = "swagger"; // Swagger UI at /swagger
     });
+
+    app.UseReDoc(options =>
+    {
+        options.DocumentTitle = "RecordDB API Documentation";
+        options.SpecUrl = "/openapi/v1.json";
+        options.RoutePrefix = "redoc"; // ReDoc UI at /redoc
+    });
+
+    app.MapScalarApiReference(options =>
+    {
+        options.WithTitle("RecordDB API Reference")
+               .WithTheme(ScalarTheme.Mars)
+               .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
+               .WithOpenApiRoutePattern("/openapi/{documentName}.json");
+    });
+
+    // Conveniently redirect root / to /scalar/v1
+    app.MapGet("/", () => Results.Redirect("/scalar/v1")).ExcludeFromDescription();
 }
 
 app.UseHttpsRedirection();

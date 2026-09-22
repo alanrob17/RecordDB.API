@@ -3,9 +3,11 @@
 ![.NET 10](https://img.shields.io/badge/.NET%2010-512BD4?logo=dotnet&logoColor=white&style=for-the-badge)
 ![C#](https://img.shields.io/badge/C%23%2013-239120?logo=csharp&logoColor=white&style=for-the-badge)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=dotnet&logoColor=white&style=for-the-badge)
+![Scalar](https://img.shields.io/badge/Scalar-API%20Reference-E9573F?style=for-the-badge)
+![ReDoc](https://img.shields.io/badge/ReDoc-API%20Docs-263238?logo=openapiinitiative&logoColor=white&style=for-the-badge)
+![Swagger](https://img.shields.io/badge/Swagger%20%2F%20OpenAPI-85EA2D?logo=swagger&logoColor=black&style=for-the-badge)
 ![Dapper](https://img.shields.io/badge/Dapper-Micro--ORM-007ACC?style=for-the-badge)
 ![Microsoft SQL Server](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC292B?logo=microsoftsqlserver&logoColor=white&style=for-the-badge)
-![Swagger](https://img.shields.io/badge/Swagger%20%2F%20OpenAPI-85EA2D?logo=swagger&logoColor=black&style=for-the-badge)
 
 A standalone, high-performance **.NET 10 Controller-based Web API** for the **RecordDB** music catalog system.
 
@@ -20,7 +22,10 @@ RecordDB.API exposes RESTful endpoints for managing artists, records (albums), d
 - **Dapper & Stored Procedures**: Direct, lightweight database execution with zero EF Core overhead.
 - **Table-Valued Parameters (TVP)**: Bulk track insertion via SQL Server's `dbo.TrackTableType`.
 - **DTOs & Data Integrity**: Dedicated request/response DTOs prevent over-posting and eliminate circular references.
-- **Interactive OpenAPI / Swagger UI**: Full endpoint documentation with XML doc summaries served directly from the application root (`/`).
+- **Triple API Documentation (Scalar, ReDoc, & Swagger UI)**: Explore and test your endpoints through three interactive documentation UIs:
+  - **Scalar** (`/scalar/v1`, with `/` root redirection)
+  - **ReDoc** (`/redoc`)
+  - **Swagger UI** (`/swagger`)
 
 ---
 
@@ -101,8 +106,10 @@ dotnet run --project D:\Projects\RecordDB.API\RecordDB.API
 ```
 
 Once running, launch your browser and navigate to:
-- **Swagger UI**: `https://localhost:<port>/` (served at the root path)
-- **OpenAPI Specification**: `https://localhost:<port>/swagger/v1/swagger.json`
+- **Scalar API Reference**: `https://localhost:<port>/scalar/v1` (or root `https://localhost:<port>/`)
+- **ReDoc**: `https://localhost:<port>/redoc`
+- **Swagger UI**: `https://localhost:<port>/swagger`
+- **OpenAPI Specification**: `https://localhost:<port>/openapi/v1.json`
 
 ---
 
